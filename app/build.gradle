@@ -1,0 +1,92 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.dagger.hilt.android'
+    id 'androidx.navigation.safeargs'
+}
+
+android {
+    namespace 'com.silverbullet.atracker'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.silverbullet.atracker"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures{
+        viewBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    def room_version = "2.5.1"
+    def nav_version = "2.5.3"
+
+    // App Compat
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+
+    // Google Maps Location Services
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+
+    // Easy Permissions
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+    // Material
+    implementation 'com.google.android.material:material:1.8.0'
+
+    // Splash Screen
+    implementation 'androidx.core:core-splashscreen:1.0.0'
+
+    // Constraint Layout
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Navigation Component
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:2.44.2"
+    annotationProcessor "com.google.dagger:hilt-compiler:2.44.2"
+
+    // RxJava
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava3:$room_version"
+
+    // MPAndroid Chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    testImplementation 'junit:junit:4.13.2'
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
