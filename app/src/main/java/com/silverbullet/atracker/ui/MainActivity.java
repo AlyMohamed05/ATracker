@@ -1,4 +1,4 @@
-package com.silverbullet.atracker;
+package com.silverbullet.atracker.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
