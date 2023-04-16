@@ -69,7 +69,7 @@ public class SetupFragment extends Fragment {
                 binding.fabContinue,
                 PropertyValuesHolder.ofFloat(View.SCALE_X, 0f, 1f),
                 PropertyValuesHolder.ofFloat(View.SCALE_Y, 0f, 1f),
-                PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, binding.fabContinue.getHeight() , 0f)
+                PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, binding.fabContinue.getHeight(), 0f)
         );
         fabDisappearAnimation = ObjectAnimator.ofPropertyValuesHolder(
                 binding.fabContinue,
@@ -130,9 +130,9 @@ public class SetupFragment extends Fragment {
             }
         });
         mIsValidFormObserver = isValid -> {
-            if (isValid) {
+            if (isValid && binding.fabContinue.getVisibility() == View.GONE) {
                 fabAppearAnimation.start();
-            } else {
+            } else if (!isValid && binding.fabContinue.getVisibility() == View.VISIBLE) {
                 fabDisappearAnimation.start();
             }
         };

@@ -37,19 +37,28 @@ android {
 
 }
 
+configurations {
+    all {
+        resolutionStrategy {
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10'
+        }
+    }
+}
+
 dependencies {
+    def lifecycle_version = "2.6.1"
     def room_version = "2.5.1"
     def nav_version = "2.5.3"
 
     // App Compat
     implementation 'androidx.appcompat:appcompat:1.6.1'
 
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
+
     // Google Maps Location Services
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
-
-    // Easy Permissions
-    implementation 'pub.devrel:easypermissions:3.0.0'
 
     // Material
     implementation 'com.google.android.material:material:1.8.0'
