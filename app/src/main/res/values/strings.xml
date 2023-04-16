@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">A Tracker</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="runs">Runs</string>
+    <string name="statistics">Statistics</string>
+    <string name="settings">Settings</string>
+
+    <string name="continue_desc">navigates from setup screen to runs screen</string>
+
+    <string name="hello">Hello !</string>
+    <string name="name">Name</string>
+    <string name="weight">Your Weight</string>
+    <string name="kg">KG</string>
+
 </resources>

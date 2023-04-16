@@ -2,9 +2,14 @@ package com.silverbullet.atracker.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.silverbullet.atracker.R;
 import com.silverbullet.atracker.databinding.ActivityMainBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -21,5 +26,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // TODO: you might want to set SupportActionBar here
+
+        setupNavigation();
+    }
+
+    private void setupNavigation() {
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        if (navHostFragment == null) {
+            return;
+        }
+        NavController navController = navHostFragment.getNavController();
+        NavigationUI.setupWithNavController(binding.bottomNavBar, navController);
+
+        navController.addOnDestinationChangedListener((pram1, dest, pram2) -> {
+            final int destId = dest.getId();
+            if (destId == R.id.setupFragment) {
+                binding.bottomNavBar.setVisibility(View.GONE);
+            } else if (destId == R.id.trackingFragment) {
+                binding.bottomNavBar.setVisibility(View.GONE);
+            } else {
+                binding.bottomNavBar.setVisibility(View.VISIBLE);
+            }
+        });
     }
 }
