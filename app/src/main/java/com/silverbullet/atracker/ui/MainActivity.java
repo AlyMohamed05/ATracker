@@ -6,11 +6,16 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.silverbullet.atracker.R;
 import com.silverbullet.atracker.databinding.ActivityMainBinding;
+import com.silverbullet.atracker.ui.fragment.TrackingFragment;
+import com.silverbullet.atracker.utils.NotificationUtils;
+
+import java.util.Objects;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -30,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
         // TODO: you might want to set SupportActionBar here
 
         setupNavigation();
+        NotificationUtils.createNotificationChannel(this);
+        checkForTrackingFragmentAction(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        checkForTrackingFragmentAction(intent);
     }
 
     private void setupNavigation() {
@@ -50,5 +63,22 @@ public class MainActivity extends AppCompatActivity {
                 binding.bottomNavBar.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    /**
+     * This will check for the action Tracking fragment and if finds it then it will navigate to the Tracking fragment
+     */
+    private void checkForTrackingFragmentAction(Intent intent) {
+        if (intent == null) {
+            return;
+        }
+        if (Objects.equals(intent.getAction(), TrackingFragment.ACTION_OPEN_TRACKING_FRAGMENT)) {
+            NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+            if (navHostFragment == null) {
+                return;
+            }
+            NavController navController = navHostFragment.getNavController();
+            navController.navigate(R.id.action_global_trackingFragment);
+        }
     }
 }

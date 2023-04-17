@@ -5,11 +5,16 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/setupFragment">
 
+    <action
+        android:id="@+id/action_global_trackingFragment"
+        app:destination="@+id/trackingFragment"
+        app:launchSingleTop="true" />
+
     <fragment
         android:id="@+id/runsFragment"
         android:name="com.silverbullet.atracker.ui.fragment.RunsFragment"
         android:label="fragment_runs"
-        tools:layout="@layout/fragment_runs" >
+        tools:layout="@layout/fragment_runs">
         <action
             android:id="@+id/action_runsFragment_to_trackingFragment"
             app:destination="@id/trackingFragment" />
@@ -19,7 +24,7 @@
         android:id="@+id/setupFragment"
         android:name="com.silverbullet.atracker.ui.fragment.SetupFragment"
         android:label="fragment_setup"
-        tools:layout="@layout/fragment_setup" >
+        tools:layout="@layout/fragment_setup">
         <action
             android:id="@+id/action_setupFragment_to_runsFragment"
             app:destination="@id/runsFragment" />
@@ -35,7 +40,7 @@
         android:id="@+id/trackingFragment"
         android:name="com.silverbullet.atracker.ui.fragment.TrackingFragment"
         android:label="fragment_tracking"
-        tools:layout="@layout/fragment_tracking" >
+        tools:layout="@layout/fragment_tracking">
         <action
             android:id="@+id/action_trackingFragment_to_runsFragment"
             app:destination="@id/runsFragment" />
